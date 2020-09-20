@@ -10,7 +10,7 @@
 </div>
 
 # BerryGames - StrawBerry
-StrawBerry is official Rest-API from BerryGames.
+Strawberry is the REST API of BerryGames.
 
 ## Support
 <a href="https://www.patreon.com/onruntime">
