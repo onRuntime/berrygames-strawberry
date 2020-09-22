@@ -43,11 +43,13 @@ func (r *Router) Init(addr string, data *data.Data, logging bool) error {
 
 func (r *Router) registerRoutes(api *gin.RouterGroup, data *data.Data) {
 	api.GET("/servers", handle(data, routes.GetServers))
-	api.GET("/servers/:id", handle(data, routes.GetServer))
-	api.POST("/servers", handle(data, routes.PostServer))
-	api.DELETE("/servers/:id", handle(data, routes.DeleteServer))
-	api.PUT("/servers/:id/players", handle(data, routes.PutServerPlayer))
-	api.DELETE("/servers/:id/players/:name", handle(data, routes.DeleteServerPlayer))
+	api.GET("/server/:id", handle(data, routes.GetServer))
+	api.POST("/server", handle(data, routes.PostServer))
+	api.DELETE("/server/:id", handle(data, routes.DeleteServer))
+
+	api.GET("/players", handle(data, routes.GetPlayers))
+	api.GET("/player/:name/*action", handle(data, routes.GetPlayer))
+	api.PATCH("/player/:name", handle(data, routes.PatchPlayer))
 }
 
 type RequestHandler func(d *data.Data, c *gin.Context)

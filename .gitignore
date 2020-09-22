@@ -16,3 +16,6 @@
 
 # Credentials
 .env
+
+# External
+*.log

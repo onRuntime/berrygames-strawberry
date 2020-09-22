@@ -6,7 +6,7 @@ type Server struct {
 	gorm.Model
 
 	ServerTypeID int
-	ServerType   ServerType `gorm:"constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
+	ServerType   ServerType `gorm:"foreignKey:ID;constraint:OnUpdate:CASCADE,OnDelete:CASCADE;"`
 
-	Players      []Player   `gorm:"foreignkey:Name"`
+	Players      []Player   `gorm:"many2many:server_players;"`
 }

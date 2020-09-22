@@ -17,7 +17,7 @@ func New() *Server {
 func (s *Server) Start(addr string, devMode bool) error {
 
 	s.Data = data.New()
-	err := s.Data.Connect(
+	err := s.Data.DBConnect(
 		os.Getenv("DB_ADDR"),
 		os.Getenv("DB_PORT"),
 		os.Getenv("DB_USER"),
@@ -27,6 +27,15 @@ func (s *Server) Start(addr string, devMode bool) error {
 	if err != nil {
 		return err
 	}
+	err = s.Data.RedisConnect(
+		os.Getenv("REDIS_ADDR"),
+		os.Getenv("REDIS_PORT"),
+		os.Getenv("REDIS_PWD"),
+		0)
+	if err != nil {
+		return err
+	}
+
 	if err := s.Data.Init(); err != nil {
 		return err
 	}
